@@ -20,8 +20,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String userID;
+    @Column(unique=true)
     private String name;
+    @Column(unique=true)
     private String phoneNum;
+    @Column(unique=true)
     private String email;
 
     @CreationTimestamp

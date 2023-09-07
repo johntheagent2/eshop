@@ -17,6 +17,12 @@ public class CategoryService {
         categoryRepository.save(category);
     }
 
+    public void update(String categoryName, String categoryID){
+        Category updateCategory = categoryRepository.getCategoriesByCategoryID(categoryID);
+        updateCategory.setName(categoryName);
+        save(updateCategory);
+    }
+
     public List<Category> getAll(){
         return categoryRepository.findAll();
     }

@@ -11,10 +11,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Category {
+public class Sizing {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String CategoryID;
-    @Column(unique=true)
-    private String name;
+    private String sizeID;
+    private String size;
 }
