@@ -16,7 +16,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping()
-    public List<Category> getAllCategory(){
+    public List<Category> getAll(){
         try{
             return categoryService.getAll();
         }catch (Exception e){
@@ -25,7 +25,7 @@ public class CategoryController {
     }
 
     @PostMapping("/save")
-    public void saveCategory(@RequestBody Category category){
+    public void save(@RequestBody Category category){
         try{
             categoryService.save(category);
         }catch (Exception e){
@@ -33,13 +33,18 @@ public class CategoryController {
         }
     }
 
-    @PutMapping("/save")
-    public void update(@RequestBody String categoryNewName, @RequestParam String categoryID){
+    @PutMapping("/update")
+    public void update(@RequestBody Category category, @RequestParam String categoryID){
         try{
-            categoryService.update(categoryNewName, categoryID);
+            categoryService.update(category.getName(), categoryID);
         }catch (Exception e){
             throw new ApiRequestException("Please check category list again!");
         }
+    }
+
+    @DeleteMapping("/delete")
+    public void delete(@RequestParam String categoryID){
+        categoryService.delete(categoryID);
     }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -18,12 +19,20 @@ public class CategoryService {
     }
 
     public void update(String categoryName, String categoryID){
-        Category updateCategory = categoryRepository.getCategoriesByCategoryID(categoryID);
-        updateCategory.setName(categoryName);
-        save(updateCategory);
+        Optional<Category> category = categoryRepository.findById(categoryID);
+        category.get().setName(categoryName);
+        save(category.get());
+    }
+
+    public void delete(String categoryID){
+        categoryRepository.deleteById(categoryID);
     }
 
     public List<Category> getAll(){
         return categoryRepository.findAll();
+    }
+
+    public Category findCategoryByID(String categoryID){
+        return categoryRepository.findById(categoryID).get();
     }
 }
