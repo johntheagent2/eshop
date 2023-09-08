@@ -20,11 +20,7 @@ public class Product {
     private String name;
     private int price;
     private int quantity;
-    private String Description;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_size_id", referencedColumnName = "productID")
-    private List<Sizing> sizing;
+    private String description;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_category_id")

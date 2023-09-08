@@ -26,6 +26,8 @@ public class User {
     private String phoneNum;
     @Column(unique=true)
     private String email;
+    @Column(unique=true)
+    private String address;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
