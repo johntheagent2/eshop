@@ -1,49 +1,45 @@
 package cdp.mycomp.eshop.controller;
 
 import cdp.mycomp.eshop.exception.ApiRequestException;
-import cdp.mycomp.eshop.model.Category;
-import cdp.mycomp.eshop.model.User;
-import cdp.mycomp.eshop.repository.UserRepository;
-import cdp.mycomp.eshop.service.CategoryService;
-import cdp.mycomp.eshop.service.UserService;
+import cdp.mycomp.eshop.model.Product;
+import cdp.mycomp.eshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/product")
+public class ProductController {
     @Autowired
-    private UserService userService;
+    private ProductService productService;
 
     @GetMapping()
-    public List<User> getAll(){
+    public List<Product> getAll(){
         try{
-            return userService.getAll();
+            return productService.getAll();
         }catch (Exception e){
             throw new ApiRequestException(e.getMessage());
         }
     }
 
     @GetMapping("/{id}")
-    public User getUserInfoWithID(@PathVariable("id") String userID){
-        return userService.findByID(userID);
+    public Product getUserInfoWithID(@PathVariable("id") String productID){
+        return productService.findByID(productID);
     }
 
     @PostMapping("/save")
-    public void save(@RequestBody User user){
+    public void save(@RequestBody Product product){
         try{
-            userService.save(user);
+            productService.save(product);
         }catch (Exception e){
             throw new ApiRequestException("This user already existed!");
         }
     }
 
     @PutMapping("/update")
-    public void update(@RequestBody User user, @RequestParam String userID){
+    public void update(@RequestBody Product product, @RequestParam String productID){
         try{
-            userService.update(user, userID);
+            productService.update(product, productID);
         }catch (Exception e){
             throw new ApiRequestException("Please check user information again!");
         }
@@ -51,6 +47,6 @@ public class UserController {
 
     @DeleteMapping("/delete")
     public void delete(@RequestParam String userID){
-        userService.delete(userID);
+        productService.delete(userID);
     }
 }
