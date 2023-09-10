@@ -23,6 +23,13 @@ public class ProductService implements ServiceInterface<Product>{
 
     @Override
     public void save(Product obj) {
+        String productName = obj.getName();
+        if(productRepository.existsProductByName(productName)){
+            Product product = productRepository.getProductsByName(productName);
+            int currentQuantity = product.getQuantity();
+            product.setQuantity(currentQuantity + obj.getQuantity());
+            productRepository.save(product);
+        }
         productRepository.save(obj);
     }
 

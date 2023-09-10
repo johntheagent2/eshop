@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
 @RequestMapping("/product")
 public class ProductController {
     @Autowired
@@ -32,7 +33,7 @@ public class ProductController {
         try{
             productService.save(product);
         }catch (Exception e){
-            throw new ApiRequestException("This user already existed!");
+            throw new ApiRequestException("This product already existed!");
         }
     }
 
@@ -41,12 +42,12 @@ public class ProductController {
         try{
             productService.update(product, productID);
         }catch (Exception e){
-            throw new ApiRequestException("Please check user information again!");
+            throw new ApiRequestException("Please check product information again!");
         }
     }
 
     @DeleteMapping("/delete")
-    public void delete(@RequestParam String userID){
-        productService.delete(userID);
+    public void delete(@RequestParam String productID){
+        productService.delete(productID);
     }
 }
