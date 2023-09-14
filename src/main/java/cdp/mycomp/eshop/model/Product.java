@@ -1,13 +1,14 @@
 package cdp.mycomp.eshop.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -18,12 +19,17 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String productID;
+//    @Column(unique = true)
     private String name;
     private int price;
     private int quantity;
     private String description;
 
-    @OneToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "fk_category_id")
-    private Category category;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "products_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+//    @JsonBackReference
+    private Set<Category> category;
 }
