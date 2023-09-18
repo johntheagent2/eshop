@@ -16,8 +16,7 @@ public class ReceiptDetails {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String receiptDetailsID;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_product_id")
+    @ManyToOne
     private Product product;
 
     private int quantity;

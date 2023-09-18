@@ -30,6 +30,12 @@ public class Product {
             name = "products_category",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-//    @JsonBackReference
     private Set<Category> category;
+
+//    @OneToMany(cascade = CascadeType.MERGE)
+//    @JoinTable(
+//            name = "product_receipt_details",
+//            joinColumns = @JoinColumn(name = "product_id"),
+//            inverseJoinColumns = @JoinColumn(name = "receipt_details_id"))
+//    private Set<ReceiptDetails> receiptDetails;
 }
