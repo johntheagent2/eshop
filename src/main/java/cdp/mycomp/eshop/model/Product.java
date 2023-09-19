@@ -19,7 +19,6 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String productID;
-//    @Column(unique = true)
     private String name;
     private int price;
     private int quantity;
@@ -32,10 +31,4 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> category;
 
-//    @OneToMany(cascade = CascadeType.MERGE)
-//    @JoinTable(
-//            name = "product_receipt_details",
-//            joinColumns = @JoinColumn(name = "product_id"),
-//            inverseJoinColumns = @JoinColumn(name = "receipt_details_id"))
-//    private Set<ReceiptDetails> receiptDetails;
 }

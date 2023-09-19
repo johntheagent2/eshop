@@ -18,11 +18,10 @@ public class Receipt {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String receiptID;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_user_id")
+    @ManyToOne
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "fk_receipt_details_id", referencedColumnName = "receiptID")
     private List<ReceiptDetails> receiptDetails;
 
